@@ -70,3 +70,8 @@ chrome://inspect/
         }
 
 ```
+
+
+## How to Purchase C50
+
+In order to purcahse c50, you must be added to the whitelist by an administrator, if you aren't added you can't buy it

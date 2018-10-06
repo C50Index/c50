@@ -30,12 +30,17 @@ contract('C50V2', function ([_, owner, investor, purchaser]) {
 
   describe('accepting payments', function () {
     it('should accept payments', async function () {
+      await token.addToWhiteList(_, {from: owner});
+      status = await token.onWhitelist(_, {from: investor});
+      assert.equal(status, true);
       await token.send(value);
     });
   });
 
   describe('high-level purchase', function () {
     it('should log purchase', async function () {
+      await token.addToWhiteList(investor, {from: owner});
+
       const { logs } = await token.sendTransaction({ value: value, from: investor });
       const event = logs.find(e => e.event === 'TokenPurchase');
       assert.equal(event.event, 'TokenPurchase');
@@ -45,12 +50,15 @@ contract('C50V2', function ([_, owner, investor, purchaser]) {
     });
 
     it('should assign tokens to sender', async function () {
+      await token.addToWhiteList(investor, {from: owner});
+
       await token.sendTransaction({ value: value, from: investor });
       const balance = await token.balanceOf(investor);
       balance.should.be.bignumber.equal(expectedTokenAmount);
     });
 
     it('should forward funds to owner', async function () {
+      await token.addToWhiteList(investor, {from: owner});
       const pre = await web3.eth.getBalance(owner);
       await token.sendTransaction({ value, from: investor });
       const post = await web3.eth.getBalance(owner);
@@ -60,6 +68,7 @@ contract('C50V2', function ([_, owner, investor, purchaser]) {
 
   describe('low-level purchase', function () {
     it('should log purchase', async function () {
+      await token.addToWhiteList(investor, {from: owner});
       const { logs } = await token.buyTokens(investor, { value: value, from: purchaser });
       const event = logs.find(e => e.event === 'TokenPurchase');
       assert.equal(event.event, 'TokenPurchase');
@@ -69,12 +78,15 @@ contract('C50V2', function ([_, owner, investor, purchaser]) {
     });
 
     it('should assign tokens to beneficiary', async function () {
+      await token.addToWhiteList(investor, {from: owner});
       await token.buyTokens(investor, { value, from: purchaser });
       const balance = await token.balanceOf(investor);
       balance.should.be.bignumber.equal(expectedTokenAmount);
     });
 
     it('should forward funds to owner', async function () {
+      await token.addToWhiteList(investor, {from: owner});
+
       const pre = await web3.eth.getBalance(owner);
       await token.buyTokens(investor, { value, from: purchaser });
       const post = await web3.eth.getBalance(owner);

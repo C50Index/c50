@@ -2,8 +2,10 @@ pragma solidity ^0.4.24;
 
 import 'zeppelin-solidity/contracts/token/ERC20/MintableToken.sol';
 import 'zeppelin-solidity/contracts/lifecycle/Pausable.sol';
+import './WhiteList.sol';
 
-contract C50V2 is MintableToken, Pausable {
+
+contract C50V2 is MintableToken, Pausable, WhiteList {
     string public name = "Cryptocurrency 50 Index";
     string public symbol = "C50";
     uint8 public decimals = 18;
@@ -31,6 +33,7 @@ contract C50V2 is MintableToken, Pausable {
   event Mint(address indexed to, uint256 amount);
   event SetWallet(address wallet);
   event SetRate(uint256 indexed rate);
+  event FallBack(address sender, uint256 value);
 
   constructor() public {
     totalSupply_ = INITIAL_SUPPLY;
@@ -49,6 +52,7 @@ contract C50V2 is MintableToken, Pausable {
     uint256 _weiAmount = msg.value;
     require(_beneficiary != address(0));
     require(_weiAmount > 0);
+    require(onWhitelist(_beneficiary));
 
     // calculate token amount to be created
     uint256 _amount = _weiAmount.mul(rate);
