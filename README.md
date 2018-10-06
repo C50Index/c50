@@ -30,7 +30,7 @@ chrome://inspect/
 
 1. Update owner address in 1_initial_migration.js
        const C50 = artifacts.require("./C50V2.sol");
-       - Make sure the from address is completelyu lowercase
+       - Make sure the from address is completely lowercase
 
 ```js       
        module.exports = function(deployer, network, accounts) {
@@ -38,7 +38,9 @@ chrome://inspect/
        }
 ```
 
-2. Run the command
+2. Also be sure to update the seed phrase for the network provider 
+
+3. Run the command
 
 ```sh
     truffle migrate --network development
