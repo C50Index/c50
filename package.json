@@ -10,6 +10,7 @@
   "author": "Douglas von Kohorn",
   "license": "MIT",
   "devDependencies": {
+    "@0x/sol-trace": "^1.0.3",
     "babel-cli": "^6.22.2",
     "babel-core": "^6.22.1",
     "babel-eslint": "^6.1.2",
@@ -27,6 +28,7 @@
     "eslint-plugin-promise": "^3.0.0",
     "eslint-plugin-standard": "^2.0.0",
     "html-webpack-plugin": "^2.28.0",
+    "install": "^0.12.2",
     "json-loader": "^0.5.4",
     "style-loader": "^0.13.1",
     "truffle-contract": "^1.1.11",
@@ -39,7 +41,7 @@
     "chai": "^4.1.2",
     "chai-as-promised": "^7.1.1",
     "chai-bignumber": "^2.0.2",
-    "truffle-hdwallet-provider": "^0.0.6",
-    "zeppelin-solidity": "^1.7.0"
+    "openzeppelin-solidity": "^2.1.2",
+    "truffle-hdwallet-provider": "^0.0.6"
   }
 }

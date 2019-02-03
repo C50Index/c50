@@ -1,6 +1,6 @@
-pragma solidity ^0.4.24;
+pragma solidity ^0.5.0;
 
-import 'zeppelin-solidity/contracts/ownership/Ownable.sol';
+import 'openzeppelin-solidity/contracts/ownership/Ownable.sol';
 
 /**
  * @title Administrable
@@ -14,7 +14,7 @@ contract Administrable is Ownable {
    * @dev Throws if an account that is not an admin
    */
   modifier onlyAdministrator() {
-    require(msg.sender == owner || isAdministrator(msg.sender));
+    require(msg.sender == owner() || isAdministrator(msg.sender));
     _;
   }
 

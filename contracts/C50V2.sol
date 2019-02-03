@@ -1,11 +1,10 @@
-pragma solidity ^0.4.24;
-
-import 'zeppelin-solidity/contracts/token/ERC20/MintableToken.sol';
-import 'zeppelin-solidity/contracts/lifecycle/Pausable.sol';
+pragma solidity ^0.5.0;
+import 'openzeppelin-solidity/contracts/token/ERC20/ERC20Mintable.sol';
+import 'openzeppelin-solidity/contracts/lifecycle/Pausable.sol';
 import './WhiteList.sol';
 
 
-contract C50V2 is MintableToken, Pausable, WhiteList {
+contract C50V2 is ERC20Mintable, Pausable, WhiteList {
     string public name = "Cryptocurrency 50 Index";
     string public symbol = "C50";
     uint8 public decimals = 18;
@@ -14,7 +13,6 @@ contract C50V2 is MintableToken, Pausable, WhiteList {
     uint256 public rate; // How many token units a buyer gets per wei
     address public wallet;  // Address where funds are collected
     uint256 public weiRaised; // Amount of wei raised
-    bool public paused = false;
 
   /**
    * Event for token purchase logging
@@ -30,17 +28,13 @@ contract C50V2 is MintableToken, Pausable, WhiteList {
     uint256 amount
   );
 
-  event Mint(address indexed to, uint256 amount);
   event SetWallet(address wallet);
   event SetRate(uint256 indexed rate);
-  event FallBack(address sender, uint256 value);
 
   constructor() public {
-    totalSupply_ = INITIAL_SUPPLY;
-    balances[msg.sender] = INITIAL_SUPPLY;
+    _mint(msg.sender, INITIAL_SUPPLY);
     rate = 500;
     wallet = msg.sender;
-    emit Transfer(0x0, msg.sender, INITIAL_SUPPLY);
   }
 
   //Fallback function
@@ -58,17 +52,13 @@ contract C50V2 is MintableToken, Pausable, WhiteList {
     uint256 _amount = _weiAmount.mul(rate);
 
     // update state
+
+    require(totalSupply().add(_amount) <= MAX_SUPPLY);
+    _mint(_beneficiary, _amount);
     weiRaised = weiRaised.add(_weiAmount);
 
-    require(totalSupply_.add(_amount) <= MAX_SUPPLY);
-
-    totalSupply_ = totalSupply_.add(_amount);
-    balances[_beneficiary] = balances[_beneficiary].add(_amount);
-    emit Mint(_beneficiary, _amount);
-    emit Transfer(address(0), _beneficiary, _amount);
     emit TokenPurchase(msg.sender, _beneficiary, _weiAmount, _amount);
-
-    wallet.transfer(_weiAmount);
+    _transfer(_beneficiary, wallet, _weiAmount);
   }
 
 
