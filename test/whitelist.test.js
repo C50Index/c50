@@ -1,10 +1,10 @@
 const C50 = artifacts.require('C50V2');
 const EVMRevert = 'revert';
-const BigNumber = web3.BigNumber;
+const BN  = web3.utils.BN;
 
 require('chai')
   .use(require('chai-as-promised'))
-  .use(require('chai-bignumber')(BigNumber))
+  .use(require('chai-bignumber')(BN))
   .should();
 
 contract('WhiteList', function ([_, owner, investor, purchaser, administrator]) {

@@ -17,8 +17,8 @@ contract('C50V2', function ([_, owner, investor, purchaser]) {
   const _name = 'Cryptocurrency 50 Index';
   const _symbol = 'C50';
   const _decimals = 18;
-  const _maxSupply = 250000000000 * 10** _decimals;
-  const _initialSupply = 10000000 * 10** _decimals;
+  const _maxSupply =  new BN('250000000000').mul(new BN('10').pow(new BN(String(_decimals))));
+  const _initialSupply = new BN('10000000').mul(new BN('10').pow(new BN(String(_decimals))));
   const rate = new BN('500');
 
   const value = new BN(String(1 * 10 ** _decimals));
@@ -97,7 +97,6 @@ contract('C50V2', function ([_, owner, investor, purchaser]) {
       assert.equal(event.event, 'TokenPurchase');
       const post = await web3.eth.getBalance(owner);
       const after = new BN(post).sub(new BN(pre));
-      debugger
 
       assert.equal(after.toString(), value.toString());
     });

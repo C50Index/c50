@@ -1,10 +1,12 @@
 pragma solidity ^0.5.0;
 import 'openzeppelin-solidity/contracts/token/ERC20/ERC20Mintable.sol';
 import 'openzeppelin-solidity/contracts/lifecycle/Pausable.sol';
+import "openzeppelin-solidity/contracts/utils/ReentrancyGuard.sol";
+
 import './WhiteList.sol';
 
 
-contract C50V2 is ERC20Mintable, Pausable, WhiteList {
+contract C50V2 is ERC20Mintable, Pausable, WhiteList, ReentrancyGuard {
     string public name = "Cryptocurrency 50 Index";
     string public symbol = "C50";
     uint8 public decimals = 18;
@@ -42,7 +44,7 @@ contract C50V2 is ERC20Mintable, Pausable, WhiteList {
     buyTokens(msg.sender);
   }
 
-  function buyTokens(address _beneficiary) whenNotPaused public payable {
+  function buyTokens(address _beneficiary) whenNotPaused nonReentrant public payable {
     uint256 _weiAmount = msg.value;
     require(_beneficiary != address(0));
     require(_weiAmount > 0);
