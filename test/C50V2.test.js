@@ -290,7 +290,7 @@ contract('C50V2', function ([_, owner, recipient, anotherAccount]) {
         const amount = 100;
 
         it('emits an approval event', async function () {
-          const { logs } = await token.decreaseApproval(spender, amount, { from: owner });
+          const { logs } = await token.decreaseAllowance(spender, amount, { from: owner });
 
           assert.equal(logs.length, 1);
           assert.equal(logs[0].event, 'Approval');
@@ -301,7 +301,7 @@ contract('C50V2', function ([_, owner, recipient, anotherAccount]) {
 
         describe('when there was no approved amount before', function () {
           it('keeps the allowance to zero', async function () {
-            await token.decreaseApproval(spender, amount, { from: owner });
+            await token.decreaseAllowance(spender, amount, { from: owner });
 
             const allowance = await token.allowance(owner, spender);
             assert.equal(allowance, 0);
@@ -314,7 +314,7 @@ contract('C50V2', function ([_, owner, recipient, anotherAccount]) {
           });
 
           it('decreases the spender allowance subtracting the requested amount', async function () {
-            await token.decreaseApproval(spender, amount, { from: owner });
+            await token.decreaseAllowance(spender, amount, { from: owner });
 
             const allowance = await token.allowance(owner, spender);
             assert.equal(allowance, 1);
@@ -326,7 +326,7 @@ contract('C50V2', function ([_, owner, recipient, anotherAccount]) {
         const amount = 101;
 
         it('emits an approval event', async function () {
-          const { logs } = await token.decreaseApproval(spender, amount, { from: owner });
+          const { logs } = await token.decreaseAllowance(spender, amount, { from: owner });
 
           assert.equal(logs.length, 1);
           assert.equal(logs[0].event, 'Approval');
@@ -337,7 +337,7 @@ contract('C50V2', function ([_, owner, recipient, anotherAccount]) {
 
         describe('when there was no approved amount before', function () {
           it('keeps the allowance to zero', async function () {
-            await token.decreaseApproval(spender, amount, { from: owner });
+            await token.decreaseAllowance(spender, amount, { from: owner });
 
             const allowance = await token.allowance(owner, spender);
             assert.equal(allowance, 0);
@@ -350,7 +350,7 @@ contract('C50V2', function ([_, owner, recipient, anotherAccount]) {
           });
 
           it('decreases the spender allowance subtracting the requested amount', async function () {
-            await token.decreaseApproval(spender, amount, { from: owner });
+            await token.decreaseAllowance(spender, amount, { from: owner });
 
             const allowance = await token.allowance(owner, spender);
             assert.equal(allowance, 1);
@@ -364,14 +364,14 @@ contract('C50V2', function ([_, owner, recipient, anotherAccount]) {
       const spender = ZERO_ADDRESS;
 
       it('decreases the requested amount', async function () {
-        await token.decreaseApproval(spender, amount, { from: owner });
+        await token.decreaseAllowance(spender, amount, { from: owner });
 
         const allowance = await token.allowance(owner, spender);
         assert.equal(allowance, 0);
       });
 
       it('emits an approval event', async function () {
-        const { logs } = await token.decreaseApproval(spender, amount, { from: owner });
+        const { logs } = await token.decreaseAllowance(spender, amount, { from: owner });
 
         assert.equal(logs.length, 1);
         assert.equal(logs[0].event, 'Approval');
@@ -390,7 +390,7 @@ contract('C50V2', function ([_, owner, recipient, anotherAccount]) {
 
       describe('when the sender has enough balance', function () {
         it('emits an approval event', async function () {
-          const { logs } = await token.increaseApproval(spender, amount, { from: owner });
+          const { logs } = await token.increaseAllowance(spender, amount, { from: owner });
 
           assert.equal(logs.length, 1);
           assert.equal(logs[0].event, 'Approval');
@@ -401,7 +401,7 @@ contract('C50V2', function ([_, owner, recipient, anotherAccount]) {
 
         describe('when there was no approved amount before', function () {
           it('approves the requested amount', async function () {
-            await token.increaseApproval(spender, amount, { from: owner });
+            await token.increaseAllowance(spender, amount, { from: owner });
 
             const allowance = await token.allowance(owner, spender);
             assert.equal(allowance, amount);
@@ -414,7 +414,7 @@ contract('C50V2', function ([_, owner, recipient, anotherAccount]) {
           });
 
           it('increases the spender allowance adding the requested amount', async function () {
-            await token.increaseApproval(spender, amount, { from: owner });
+            await token.increaseAllowance(spender, amount, { from: owner });
 
             const allowance = await token.allowance(owner, spender);
             assert.equal(allowance, amount + 1);
@@ -426,7 +426,7 @@ contract('C50V2', function ([_, owner, recipient, anotherAccount]) {
         const amount = 101;
 
         it('emits an approval event', async function () {
-          const { logs } = await token.increaseApproval(spender, amount, { from: owner });
+          const { logs } = await token.increaseAllowance(spender, amount, { from: owner });
 
           assert.equal(logs.length, 1);
           assert.equal(logs[0].event, 'Approval');
@@ -437,7 +437,7 @@ contract('C50V2', function ([_, owner, recipient, anotherAccount]) {
 
         describe('when there was no approved amount before', function () {
           it('approves the requested amount', async function () {
-            await token.increaseApproval(spender, amount, { from: owner });
+            await token.increaseAllowance(spender, amount, { from: owner });
 
             const allowance = await token.allowance(owner, spender);
             assert.equal(allowance, amount);
@@ -450,7 +450,7 @@ contract('C50V2', function ([_, owner, recipient, anotherAccount]) {
           });
 
           it('increases the spender allowance adding the requested amount', async function () {
-            await token.increaseApproval(spender, amount, { from: owner });
+            await token.increaseAllowance(spender, amount, { from: owner });
 
             const allowance = await token.allowance(owner, spender);
             assert.equal(allowance, amount + 1);
@@ -463,14 +463,14 @@ contract('C50V2', function ([_, owner, recipient, anotherAccount]) {
       const spender = ZERO_ADDRESS;
 
       it('approves the requested amount', async function () {
-        await token.increaseApproval(spender, amount, { from: owner });
+        await token.increaseAllowance(spender, amount, { from: owner });
 
         const allowance = await token.allowance(owner, spender);
         assert.equal(allowance, amount);
       });
 
       it('emits an approval event', async function () {
-        const { logs } = await token.increaseApproval(spender, amount, { from: owner });
+        const { logs } = await token.increaseAllowance(spender, amount, { from: owner });
 
         assert.equal(logs.length, 1);
         assert.equal(logs[0].event, 'Approval');

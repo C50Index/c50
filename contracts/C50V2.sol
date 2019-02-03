@@ -11,7 +11,7 @@ contract C50V2 is ERC20Mintable, Pausable, WhiteList {
     uint256 public constant INITIAL_SUPPLY = 10000000 * (10 ** uint256(18));
     uint256 public constant MAX_SUPPLY = 250000000000 * (10 ** uint256(18));
     uint256 public rate; // How many token units a buyer gets per wei
-    address public wallet;  // Address where funds are collected
+    address payable private wallet;  // Address where funds are collected
     uint256 public weiRaised; // Amount of wei raised
 
   /**
@@ -57,12 +57,13 @@ contract C50V2 is ERC20Mintable, Pausable, WhiteList {
     _mint(_beneficiary, _amount);
     weiRaised = weiRaised.add(_weiAmount);
 
+    // _transfer(_beneficiary, wallet, _weiAmount);
+    address(wallet).transfer(_weiAmount);
     emit TokenPurchase(msg.sender, _beneficiary, _weiAmount, _amount);
-    _transfer(_beneficiary, wallet, _weiAmount);
   }
 
 
-  function setWallet(address _wallet) onlyOwner whenNotPaused public {
+  function setWallet(address payable _wallet) onlyOwner whenNotPaused public {
     require(_wallet != address(0));
     wallet = _wallet;
     emit SetWallet(wallet);

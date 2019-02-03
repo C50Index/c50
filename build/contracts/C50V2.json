@@ -7169,12 +7169,12 @@
         }
       },
       "links": {},
-      "address": "0x205A827A0AAe7f20dd2DF9464a933d663FB74503",
-      "transactionHash": "0x211a7490b3af2596641c8bf04b3b46f2fb00d866c58ffd3d423732fe4651a193"
+      "address": "0x8CB53088a74dFB0EAeF15E859F7A2A45144B98a5",
+      "transactionHash": "0x00251ab351ab7b679102b5e70704afca3cfefec49b6acd90b627d14d262aa745"
     }
   },
   "schemaVersion": "3.0.1",
-  "updatedAt": "2019-02-03T06:16:02.342Z",
+  "updatedAt": "2019-02-03T06:48:20.542Z",
   "devdoc": {
     "methods": {
       "allowance(address,address)": {

@@ -3,22 +3,6 @@ const config = require("../truffle.js");
 const Web3 = require('web3');
 const Promise = require("bluebird");
 
-function sequentialPromiseNamed(promiseObject) {
-    const result = Object.keys(promiseObject).reduce(
-        (reduced, key) => {
-            return {
-                chain: reduced.chain
-                    .then(() => promiseObject[ key ]())
-                    .then(result => reduced.results[ key ] = result),
-                results: reduced.results
-            };
-        },
-        {
-            chain: Promise.resolve(),
-            results: {}
-        });
-    return result.chain.then(() => result.results);
-};
 
 const duration = {
     seconds: function (val) { return val; },
@@ -31,6 +15,7 @@ const duration = {
 
 module.exports = function(deployer, network, accounts) {
     let web3;
+    console.log("this is currently unused");
 
     if (network == 'development') {
         const {
@@ -48,10 +33,10 @@ module.exports = function(deployer, network, accounts) {
         return
     }
 
-    if (typeof web3.eth.getAccountsPromise === "undefined") {
-        Promise.promisifyAll(web3.eth, { suffix: "Promise" })
-    }
-     web3.eth.getBlockPromise('latest').then(block => {
-        //return deployer.deploy(C50);
-    });
+    // if (typeof web3.eth.getAccountsPromise === "undefined") {
+    //     Promise.promisifyAll(web3.eth, { suffix: "Promise" })
+    // }
+    //  web3.eth.getBlockPromise('latest').then(block => {
+    // //     return deployer.deploy(C50);
+    // });
 };
