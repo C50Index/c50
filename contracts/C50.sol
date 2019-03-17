@@ -6,7 +6,7 @@ import "openzeppelin-solidity/contracts/utils/ReentrancyGuard.sol";
 import './WhiteList.sol';
 
 
-contract C50V2 is ERC20Mintable, Pausable, WhiteList, ReentrancyGuard {
+contract C50 is ERC20Mintable, Pausable, WhiteList, ReentrancyGuard {
     string public name = "Cryptocurrency 50 Index";
     string public symbol = "C50";
     uint8 public decimals = 18;

@@ -1,4 +1,4 @@
-const C50 = artifacts.require('C50V2');
+const C50 = artifacts.require('C50');
 const EVMRevert = 'revert';
 const BN  = web3.utils.BN;
 

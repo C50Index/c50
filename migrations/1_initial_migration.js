@@ -1,4 +1,4 @@
-const C50 = artifacts.require("./C50V2.sol");
+const C50 = artifacts.require("./C50.sol");
 // var Migrations = artifacts.require("Migrations");
 
 module.exports = function(deployer, network, accounts) {

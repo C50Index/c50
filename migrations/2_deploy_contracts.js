@@ -1,4 +1,4 @@
-const C50 = artifacts.require('./C50V2.sol');
+const C50 = artifacts.require('./c50.sol');
 const config = require("../truffle.js");
 const Web3 = require('web3');
 const Promise = require("bluebird");
