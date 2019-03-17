@@ -7288,12 +7288,12 @@
         }
       },
       "links": {},
-      "address": "0x660977424c4185559D90825fB16cd11b6f02F75D",
-      "transactionHash": "0x89a70685cf72d111b225f37576c0547f208af67d33604096d12ff2f32ab22379"
+      "address": "0x205A827A0AAe7f20dd2DF9464a933d663FB74503",
+      "transactionHash": "0x64d424d376fa26f5811db37ca9b15e0f1e0985c287c90576275f4ee06daa4e9c"
     }
   },
   "schemaVersion": "3.0.1",
-  "updatedAt": "2019-03-17T02:24:23.517Z",
+  "updatedAt": "2019-03-17T02:56:37.841Z",
   "devdoc": {
     "methods": {
       "allowance(address,address)": {
