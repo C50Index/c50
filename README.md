@@ -77,3 +77,21 @@ chrome://inspect/
 ## How to Purchase C50
 
 In order to purcahse c50, you must be added to the whitelist by an administrator, if you aren't added you can't buy it
+
+# To Interact with the contract
+
+1. Go to the contracts tab on myetherwallet https://www.myetherwallet.com/#contracts
+
+2. Add the contract address and the ABI.  The ABI will be found in c50/build/contracts/C50V2.json.  You will need to copy only the ABI part, if you copy anything else you won't be able to do transactions.  
+```js
+{
+  "contractName": "C50V2",
+  "abi": [copy everything here],
+}
+```
+Note: When you paste in the contract address, make sure it is the checksummed address.  WHich means the address will be uppercase and lowercase letters. https://kb.myetherwallet.com/addresses/what-does-checksummed-mean.html
+
+
+<img align="right" src="https://user-images.githubusercontent.com/5359580/44953719-2c09b900-aed2-11e8-9477-e5004253fbd3.png" alt="My Ether Wallet Contract Tab">
+
+3. Do your transaction with your wallet provider, ie. Trezor, Ledger, Metamask, etc.
