@@ -11,7 +11,7 @@ function ether (n) {
   return new BN(web3.toWei(n, 'ether'));
 }
 
-contract('C50V2', function ([_, owner, investor, purchaser]) {
+contract('C50', function ([_, owner, investor, purchaser]) {
   const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000';
 
   const _name = 'Cryptocurrency 50 Index';

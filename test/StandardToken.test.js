@@ -11,7 +11,7 @@ require('chai')
 const {constants, expectEvent, shouldFail } = require('openzeppelin-test-helpers');
 const { ZERO_ADDRESS } = constants;
 
-contract('C50V2', function ([_, initialHolder, recipient, anotherAccount]) {
+contract('C50', function ([_, initialHolder, recipient, anotherAccount]) {
   const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000';
 
   const _name = 'Cryptocurrency 50 Index';
