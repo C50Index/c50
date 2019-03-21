@@ -752,7 +752,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.1",
-  "updatedAt": "2019-03-17T02:19:51.683Z",
+  "updatedAt": "2019-03-21T08:33:06.044Z",
   "devdoc": {
     "author": "Remco Bloemen <remco@2π.com>, Eenae <alexey@mixbytes.io>",
     "details": "If you mark a function `nonReentrant`, you should also mark it `external`.",

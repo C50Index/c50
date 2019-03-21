@@ -27,52 +27,23 @@ chrome://inspect/
 
 
 ## How to deploy c50
+The deploy script uses [Ethers JS](https://docs.ethers.io/ethers.js/html/index.html) to handle deployments. 
+ It is a rough implemntation of the example code used in the ethers js documentation found here: https://docs.ethers.io/ethers.js/html/api-contract.html?highlight=deploy
 
-1. Update owner address in 1_initial_migration.js
-       const C50 = artifacts.require("./C50V2.sol");
-       - Make sure the from address is completely lowercase
+#### Steps to deploy:
+1. Create a file named `.mnemonic` in the same directory as `deploy.js'
+2. In the `.mnemonic` paste in the mnemonic of the wallet to be deployed
+3. Set the `INFURA_PROJECT_ID` environment variable to your Infura project Id [Infura IO](https://infura.io)
+4. In `deploy.js` update the infura provider, 
+    ```js
+    let provider = new ethers.providers.InfuraProvider('ropsten', infuraProjectId);
+    ```
+    It should work for homestead, ropsten, rinkeby, goerli, and kovan.
+    **NOTE 'homestead' is for deploying on the mainnet**
 
-```js       
-       module.exports = function(deployer, network, accounts) {
-       	return deployer.deploy(C50, {from: "0x20684Dacbdf92a919b2C0820a2e51a0C29c266ae"});
-       }
-```
+    Infura Provider: https://github.com/ethers-io/ethers.js/blob/04c92bb8d56658b6af6d740d21c3fb331affb9c5/providers/infura-provider.js
 
-2. Also be sure to update the seed phrase for the network provider 
-
-3. Run the command
-
-```sh
-    truffle migrate --network development
-```
-
-1. Check to make sure it works.  Also set the gasPrice to gasPrice: 2500000000
-
-```js
-    module.exports = {
-      networks: {
-        development: {
-          host: '127.0.0.1',
-          port: 7545,
-          network_id: '*', // Match any network id
-          gas: 4500000,
-          gasPrice: 2500000000, //  Default is 100,000,000,000 (100 Shannon).
-        },
-        ropsten: {
-          provider: new HDWalletProvider(mnemonic, "https://ropsten.infura.io/" + infura_apikey),
-          network_id: 3,
-          gas: 4500000
-          gasPrice: 2500000000
-    	},
-        mainnet: {
-          provider: new HDWalletProvider(mnemonic, "https://mainnet.infura.io/" + infura_apikey),
-          network_id: 4,
-          gas: 450000,
-          gasPrice: 2500000000
-        }
-
-```
-
+5. Run the command `node deploy.js`
 
 ## How to Purchase C50
 

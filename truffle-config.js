@@ -18,11 +18,12 @@
  *
  */
 
-// const HDWalletProvider = require('truffle-hdwallet-provider');
-// const infuraKey = "fj4jll3k.....";
+const HDWalletProvider = require('truffle-hdwallet-provider');
+const infuraKey = "f7c0d4b609b44aa4b19a23f154524a11";
 //
-// const fs = require('fs');
-// const mnemonic = fs.readFileSync(".secret").toString().trim();
+const fs = require('fs');
+const mnemonic = fs.readFileSync(".secret").toString().trim();
+
 
 module.exports = {
   /**
@@ -52,7 +53,7 @@ module.exports = {
         provider: "127.0.0.1",
         port: 8545,
         network_id: 123,
-    }
+    },
     // Another network with more advanced options...
     // advanced: {
       // port: 8777,             // Custom port
@@ -65,14 +66,14 @@ module.exports = {
 
     // Useful for deploying to a public network.
     // NB: It's important to wrap the provider as a function.
-    // ropsten: {
-      // provider: () => new HDWalletProvider(mnemonic, `https://ropsten.infura.io/${infuraKey}`),
-      // network_id: 3,       // Ropsten's id
-      // gas: 5500000,        // Ropsten has a lower block limit than mainnet
-      // confirmations: 2,    // # of confs to wait between deployments. (default: 0)
-      // timeoutBlocks: 200,  // # of blocks before a deployment times out  (minimum/default: 50)
-      // skipDryRun: true     // Skip dry run before migrations? (default: false for public nets )
-    // },
+    ropsten: {
+      provider: () => new HDWalletProvider("rookie once scare mouse wing display club share repair talk topple pluck", `ropsten.infura.io/v3/f7c0d4b609b44aa4b19a23f154524a11`),
+      network_id: 3,       // Ropsten's id
+      gas: 5500000,        // Ropsten has a lower block limit than mainnet
+      confirmations: 2,    // # of confs to wait between deployments. (default: 0)
+      timeoutBlocks: 200,  // # of blocks before a deployment times out  (minimum/default: 50)
+      skipDryRun: false     // Skip dry run before migrations? (default: false for public nets )
+    },
 
     // Useful for private networks
     // private: {
