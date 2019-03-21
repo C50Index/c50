@@ -31,10 +31,11 @@ The deploy script uses [Ethers JS](https://docs.ethers.io/ethers.js/html/index.h
  It is a rough implemntation of the example code used in the ethers js documentation found here: https://docs.ethers.io/ethers.js/html/api-contract.html?highlight=deploy
 
 #### Steps to deploy:
-1. Create a file named `.mnemonic` in the same directory as `deploy.js'
-2. In the `.mnemonic` paste in the mnemonic of the wallet to be deployed
-3. Set the `INFURA_PROJECT_ID` environment variable to your Infura project Id [Infura IO](https://infura.io)
-4. In `deploy.js` update the infura provider, 
+1. Run `truffle compile` to generate the `/build` files for the contract
+2. Create a file named `.mnemonic` in the same directory as `deploy.js'
+3. In the `.mnemonic` paste in the mnemonic of the wallet to be deployed
+4. Set the `INFURA_PROJECT_ID` environment variable to your Infura project Id [Infura IO](https://infura.io)
+5. In `deploy.js` update the infura provider, 
     ```js
     let provider = new ethers.providers.InfuraProvider('ropsten', infuraProjectId);
     ```
@@ -43,7 +44,7 @@ The deploy script uses [Ethers JS](https://docs.ethers.io/ethers.js/html/index.h
 
     Infura Provider: https://github.com/ethers-io/ethers.js/blob/04c92bb8d56658b6af6d740d21c3fb331affb9c5/providers/infura-provider.js
 
-5. Run the command `node deploy.js`
+6. Run the command `node deploy.js`
 
 ## How to Purchase C50
 
